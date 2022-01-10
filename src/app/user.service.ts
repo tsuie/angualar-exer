@@ -4,12 +4,13 @@ import { IUser } from './user.interface';
 import { Observable , throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private _url: string = "http://localhost:8000/api/";
+  private _url: string = environment.userApiUrl;
   private _httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -19,13 +20,13 @@ export class UserService {
     @Inject(LOCAL_STORAGE) private storage: StorageService
   ) { }
 
-  createUser(userData: Object): Observable<IUser[]> {
+  createUser(userData: object): Observable<IUser[]> {
     return this.http.post<IUser[]>(this._url + "register", userData, this._httpOptions).pipe(
       catchError(this.errorHandler)
     );
   }
 
-  loginUser(userData: Object): Observable<IUser[]> {
+  loginUser(userData: object): Observable<IUser[]> {
     return this.http.post<IUser[]>(this._url + "login", userData, this._httpOptions).pipe(
       catchError(this.errorHandler)
     );

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/user.service';
-import { environment } from './../../../environments/environment';
+
 
 @Component({
   selector: 'app-register',
@@ -21,8 +21,8 @@ export class RegisterComponent implements OnInit {
     validator: this.CustomValidator('password', 'c_pass')
   });
   errors = [];
-  errorsStr: string = '';
-  private _apiURL: string = environment.userApiUrl;
+  errorsStr = '';
+
 
   constructor(
     private fb: FormBuilder,
