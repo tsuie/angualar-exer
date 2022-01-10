@@ -34,8 +34,8 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.userform.value);
     this.saveData().subscribe(res => {
-      // this.storage.set(STORAGE_KEY, awesomenessLevel + 1);
-      console.log(res);
+      this._userService.rememberUser(res)
+      alert('Registered successfully');
     }, error => {
       const { errors } = error.error;
       this.errors = errors || { 'error' : ['Server Error'] };
@@ -67,5 +67,6 @@ export class RegisterComponent implements OnInit {
   }
   // Called once the component has been initialized
   ngOnInit(): void {
+    console.log(this._userService.fetchUserSession())
   }
 }
