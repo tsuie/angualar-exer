@@ -1,0 +1,31 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+  <mat-card fxFlex="30">
+    <form  [formGroup]="userform" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="onSubmit()">
+      <h1>Register</h1>
+      <h3>{{errorsStr}}</h3>
+      <!-- <mat-error >{{formErrors}}</mat-error> -->
+      <mat-form-field appearance="outline">
+        <input formControlName="fullName" placeholder="Name" matInput/>
+        <mat-error *ngIf="userform.controls['fullName'].invalid && userform.controls['fullName'].touched">Enter Valid name</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input formControlName="email" type="email" matInput placeholder="Email">
+        <mat-error *ngIf="userform.controls['email'].invalid && userform.controls['email'].touched">Pleasse Enter Valid Email</mat-error>
+        <mat-error *ngIf="errorsStr"></mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input formControlName="username" matInput placeholder="username">
+        <mat-error *ngIf="userform.controls['username'].invalid && userform.controls['username'].touched">Invalid Username</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input formControlName="password"  type="password" matInput placeholder="Password">
+        <mat-error *ngIf="userform.controls['password'].invalid && userform.controls['password'].touched">Please Enter Valid Password</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <input formControlName="c_pass"  type="password" matInput placeholder="Confirm" >
+        <mat-error *ngIf="userform.controls['c_pass'].invalid && userform.controls['c_pass'].touched">Confirm password not matched</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!userform.valid">Submit</button>
+    </form>
+  </mat-card>
+</div>
