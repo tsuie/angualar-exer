@@ -2,8 +2,7 @@
   <mat-card fxFlex="30">
     <form  [formGroup]="userform" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="onSubmit()">
       <h1>Register</h1>
-      <h3>{{errorsStr}}</h3>
-      <!-- <mat-error >{{formErrors}}</mat-error> -->
+      <mat-error *ngFor="let err of errors | keyvalue"><b>{{err.key | titlecase}}</b> : {{err.value}}</mat-error>
       <mat-form-field appearance="outline">
         <input formControlName="fullName" placeholder="Name" matInput/>
         <mat-error *ngIf="userform.controls['fullName'].invalid && userform.controls['fullName'].touched">Enter Valid name</mat-error>

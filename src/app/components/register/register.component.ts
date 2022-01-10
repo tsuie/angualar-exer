@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { UserService } from 'src/app/user.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   });
   errors = [];
   errorsStr: string = '';
-  private _apiURL: string = 'http://localhost:8000/api/register';
+  private _apiURL: string = environment.userApiUrl;
 
   constructor(
     private fb: FormBuilder,
@@ -32,27 +33,12 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.userform.value);
-
-    // this.http.post(this._apiURL, {
-    //   name: this.userform.value.fullName,
-    //   email: this.userform.value.email,
-    //   username: this.userform.value.username,
-    //   password: this.userform.value.password,
-    //   password_confirmation: this.userform.value.c_pass,
-    //   user_type: 'member'
-    // }).subscribe(response => {
-    //   // Save to Local storage
-    //   console.log(response);
-    // }, (err:HttpErrorResponse)=>{
-    //   // Alert Error
-    //   this.formErrors = err.error;
-    //   console.log(this.formErrors);
-    // });
     this.saveData().subscribe(res => {}, error => {
       const { errors } = error.error;
-      console.log(errors);
       this.errors = errors;
       this.errorsStr = JSON.stringify(errors);
+      console.log(typeof errors)
+      console.log(errors);
     })
   }
 
