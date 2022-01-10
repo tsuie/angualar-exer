@@ -33,12 +33,12 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.userform.value);
-    this.saveData().subscribe(res => {}, error => {
+    this.saveData().subscribe(res => {
+      // this.storage.set(STORAGE_KEY, awesomenessLevel + 1);
+      console.log(res);
+    }, error => {
       const { errors } = error.error;
-      this.errors = errors;
-      this.errorsStr = JSON.stringify(errors);
-      console.log(typeof errors)
-      console.log(errors);
+      this.errors = errors || { 'error' : ['Server Error'] };
     })
   }
 
