@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
     this.saveData().subscribe(res => {
       this._userService.rememberUser(res)
       alert('Registered successfully');
+      this._router.navigate(['dashboard']);
     }, error => {
       const { errors } = error.error;
       this.errors = errors || { 'error' : ['Server Error'] };
