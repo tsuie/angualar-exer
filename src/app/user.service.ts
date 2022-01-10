@@ -22,7 +22,13 @@ export class UserService {
   createUser(userData: Object): Observable<IUser[]> {
     return this.http.post<IUser[]>(this._url + "register", userData, this._httpOptions).pipe(
       catchError(this.errorHandler)
-    )
+    );
+  }
+
+  loginUser(userData: Object): Observable<IUser[]> {
+    return this.http.post<IUser[]>(this._url + "login", userData, this._httpOptions).pipe(
+      catchError(this.errorHandler)
+    );
   }
 
   rememberUser(userData: object) {
