@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
     private _userService: UserService
   ) {}
 
-
   onSubmit() {
     console.log(this.userform.value);
     this.saveData().subscribe(res => {
@@ -65,6 +64,7 @@ export class RegisterComponent implements OnInit {
       return;
     };
   }
+
   // Called once the component has been initialized
   ngOnInit(): void {
     console.log(this._userService.fetchUserSession())
