@@ -6,8 +6,9 @@
       <button mat-button routerLink="/contact" routerLinkActive="active">Contact</button>
     </div>
     <div>
-      <button mat-button routerLink="/login" routerLinkActive="activev" *ngIf="!authd">Login</button>
-      <button mat-button routerLink="/register" routerLinkActive="activev" *ngIf="!authd">Register</button>
+      <button mat-button routerLink="/logout" routerLinkActive="active" *ngIf="authd">Logout</button>
+      <button mat-button routerLink="/login" routerLinkActive="active" *ngIf="!authd">Login</button>
+      <button mat-button routerLink="/register" routerLinkActive="active" *ngIf="!authd">Register</button>
     </div>
 </mat-toolbar>
 <div class="content">

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { UserService } from 'src/app/user.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-logout',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _userService: UserService,
+    @Inject(DOCUMENT) private document: Document
+  ) { }
 
   ngOnInit(): void {
+    this._userService.logout();
+    this.document.location.href = '/login';
   }
 
 }

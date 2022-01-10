@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/user.service';
-import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private _userService: UserService,
-    private _router: Router
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   onSubmit() {
@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
     this.saveData().subscribe(res => {
       this._userService.rememberUser(res)
       alert('Registered successfully');
-      this._router.navigate(['dashboard']);
+      // this._router.navigate(['dashboard']);
+      this.document.location.href = '/dashboard';
     }, e => {
       const errors = e?.error?.errors;
       console.log(e);
@@ -72,7 +73,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     console.log(this._userService.isLoggedIn())
     if(this._userService.isLoggedIn()) {
-      this._router.navigate(['dashboard'])
+      // this._router.navigate(['dashboard'])
+      this.document.location.href = '/dashboard';
     }
   }
 }
