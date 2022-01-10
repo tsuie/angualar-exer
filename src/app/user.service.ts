@@ -36,8 +36,13 @@ export class UserService {
     this.storage.set("user", userData);
   }
 
-  fetchUserSession() {
-    return this.storage.get('user');
+  isLoggedIn() {
+    // const token = this.storage.get('user').token;
+    return !!this.storage.get('user')?.token;
+  }
+
+  fetchDetails() {
+    return this.storage.get('user')?.user;
   }
 
   logout() {

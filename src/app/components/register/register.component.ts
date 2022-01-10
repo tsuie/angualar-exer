@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/user.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +27,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private _userService: UserService
+    private _userService: UserService,
+    private _router: Router
   ) {}
 
   onSubmit() {
@@ -67,6 +68,9 @@ export class RegisterComponent implements OnInit {
 
   // Called once the component has been initialized
   ngOnInit(): void {
-    console.log(this._userService.fetchUserSession())
+    console.log(this._userService.isLoggedIn())
+    if(this._userService.isLoggedIn()) {
+      this._router.navigate(['dashboard'])
+    }
   }
 }
