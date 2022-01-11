@@ -42,7 +42,7 @@ export class UserService {
   }
 
   fetchDetails() {
-    return this.storage.get('user')?.user;
+    return this.storage.get('user')?.data;
   }
 
   logout() {
