@@ -21,12 +21,9 @@ export class RegisterComponent implements OnInit {
     validator: this.CustomValidator('password', 'c_pass')
   });
   errors = [];
-  errorsStr = '';
-
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
     private _userService: UserService,
     @Inject(DOCUMENT) private document: Document
   ) {}

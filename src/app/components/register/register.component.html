@@ -10,7 +10,6 @@
       <mat-form-field appearance="outline">
         <input formControlName="email" type="email" matInput placeholder="Email">
         <mat-error *ngIf="userform.controls['email'].invalid && userform.controls['email'].touched">Pleasse Enter Valid Email</mat-error>
-        <mat-error *ngIf="errorsStr"></mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <input formControlName="username" matInput placeholder="Username">
