@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required]]
   });
-  errors = [];
+  error = [];
 
   constructor(
     private fb: FormBuilder,
@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
       this._userService.rememberUser(res);
       this.document.location.href = '/dashboard';
     }, (e) => {
-      const errors = e?.error?.errors;
+      const error = e?.error?.message;
       console.log(e);
-      this.errors = errors || { 'error' : ['Server Error'] };
+      this.error = error || 'Invalid Login';
     })
   }
 

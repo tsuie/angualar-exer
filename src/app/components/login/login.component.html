@@ -2,6 +2,7 @@
   <mat-card fxFlex="30">
     <form  [formGroup]="userform" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="onSubmit()">
       <h1>Login</h1>
+      <mat-error *ngIf="error">{{error}}</mat-error>
       <mat-form-field appearance="outline">
         <input formControlName="email" placeholder="Enter Email" type="email" matInput/>
         <mat-error *ngIf="userform.controls['email'].invalid && userform.controls['email'].touched">Enter Valid Email</mat-error>
@@ -10,7 +11,7 @@
         <input formControlName="password" placeholder="Enter Password" type="password" matInput/>
         <mat-error *ngIf="userform.controls['password'].invalid && userform.controls['password'].touched">Password Incorrect</mat-error>
       </mat-form-field>
-      <button type="submit" mat-raised-button color="primary" [disabled]="!userform.valid">LOGIN</button>
+      <button type="submit" mat-raised-button color="primary">LOGIN</button>
     </form>
   </mat-card>
 </div>
