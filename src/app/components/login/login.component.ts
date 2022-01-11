@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   handleLogin() {
     const postData = {
-      username: this.userform.value.username,
+      email: this.userform.value.email,
       password: this.userform.value.password
     };
     return this._userService.loginUser(postData);
