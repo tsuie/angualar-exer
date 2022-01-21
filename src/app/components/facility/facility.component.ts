@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { FacilityService } from '../../services/facility/facility.service';
 import { AddFacilityComponent } from './add-facility/add-facility.component';
 import { MatDialog } from '@angular/material/dialog';

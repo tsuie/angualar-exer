@@ -32,6 +32,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FacilityComponent } from './components/facility/facility.component';
 import { AddFacilityComponent } from './components/facility/add-facility/add-facility.component';
+import { DeleteFacilityComponent } from './components/facility/delete-facility/delete-facility.component';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent},
@@ -55,7 +56,8 @@ const routes: Routes = [
     DashboardComponent,
     LogoutComponent,
     FacilityComponent,
-    AddFacilityComponent
+    AddFacilityComponent,
+    DeleteFacilityComponent
   ],
   imports: [
     ReactiveFormsModule,
