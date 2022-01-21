@@ -32,8 +32,19 @@ export class FacilityService {
     }
   }
 
-  create(data: object): Observable<IFacility>  {
-    return this.http.post<IFacility>(this._url + "facilities", data, this._httpOptions).pipe(
+  create(data: IFacility): Observable<IFacility>  {
+    return this.http.post<IFacility>(this._url + "facilities", {
+      facility_number: data.facility_number,
+      facility: data.facility,
+      address1: data.address1,
+      address2: data.address2,
+      city: data.city,
+      state: data.state,
+      phone1: data.phone1,
+      phone2: data.phone2,
+      fax: data.fax,
+      web_url: data.web_url
+    }, this._httpOptions).pipe(
       catchError(this.errorHandler)
     );
   }

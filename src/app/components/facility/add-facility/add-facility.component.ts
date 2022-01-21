@@ -66,7 +66,7 @@ export class AddFacilityComponent implements OnInit {
     // this.dialogRef.close();
   }
 
-  saveData(data: object) {
+  saveData(data: IFacility) {
     return this._facilityService.create(data)
   }
 
