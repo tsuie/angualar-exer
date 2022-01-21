@@ -1,1 +1,17 @@
-<p>delete-facility works!</p>
+<h1>Delete Facility</h1>
+<p>Are you sure you want to delete this data?</p>
+<mat-card>
+  <h3>Details</h3>
+  <ul>
+    <li>Facility: {{prop.facility}} (ID: {{prop.facility_number}})</li>
+    <li>Address: {{prop.address1}}</li>
+    <li>Address 2: {{prop.address2 || 'NA'}}</li>
+    <li>City - State: {{prop.city || 'NA'}} {{prop.state || 'NA'}}</li>
+    <li>Phone(s): {{prop.phone1}} {{prop.phone2 || ''}}</li>
+    <li>Fax: {{prop.fax || 'NA'}}</li>
+    <li>Website Link: {{prop.web_url || 'NA'}}</li>
+  </ul>
+</mat-card>
+<p>&nbsp;</p>
+<button mat-stroked-button color="warn" (click)="handleDelete()">Delete</button>&nbsp;
+<button mat-stroked-button (click)="onNoClick()">Cancel</button>

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FacilityService } from '../../services/facility/facility.service';
 import { AddFacilityComponent } from './add-facility/add-facility.component';
+import { DeleteFacilityComponent } from './delete-facility/delete-facility.component';
 import { MatDialog } from '@angular/material/dialog';
+import { IFacility } from 'src/app/models/facility.interface';
 
 @Component({
   selector: 'app-facility',
@@ -17,13 +19,10 @@ export class FacilityComponent implements OnInit {
     'facility_number',
     'facility',
     'address1',
-    'address2',
     'city',
     'state',
     'phone1',
-    'phone2',
-    'fax',
-    'web_url',
+    'id'
   ];
   dataSource = this.ELEMENT_DATA;
   facilities: object = [];
@@ -47,6 +46,16 @@ export class FacilityComponent implements OnInit {
     )
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
+  openDeleteFacility(data: object): void {
+    const dialogRef = this.dialog.open(DeleteFacilityComponent,
+      { width: '600px', data: data }
+    )
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The delete dialog was closed');
       console.log(result);
     });
   }
