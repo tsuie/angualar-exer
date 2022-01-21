@@ -1,0 +1,66 @@
+<h1>Create Facility</h1>
+<div fxLayoutAlign="center center" fxFlexFill>
+  <mat-card fxFlex="100">
+    <form
+      [formGroup]="facilityForm"
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      (ngSubmit)="onSubmit()"
+    >
+      <h1 *ngIf="loading">Loading...</h1>
+      <mat-error *ngIf="!facilityForm.valid">Please fillup all required fields</mat-error>
+      <mat-form-field appearance="outline">
+        <label for="" class="py-3">Facility Number <span class="text-red-500">*</span></label>
+        <input formControlName="facility_number" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['facility_number'].invalid && facilityForm.controls['facility_number'].touched">Enter valid Facility #</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Facility Name <span class="text-red-500">*</span></label>
+        <input formControlName="facility" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['facility'].invalid && facilityForm.controls['facility'].touched">Enter a proper name</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Address 1 <span class="text-red-500">*</span></label>
+        <input formControlName="address1"type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['address1'].invalid && facilityForm.controls['address1'].touched">Invalid Address</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Address 2</label>
+        <input formControlName="address2" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['address2'].invalid && facilityForm.controls['address2'].touched">Invalid Address 2</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">City <span class="text-red-500">*</span></label>
+        <input formControlName="city" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['city'].invalid && facilityForm.controls['city'].touched">Can't find city</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">State <span class="text-red-500">*</span></label>
+        <input formControlName="state" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['state'].invalid && facilityForm.controls['state'].touched">Unable to locate state</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Phone <span class="text-red-500">*</span></label>
+        <input formControlName="phone1" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['phone1'].invalid && facilityForm.controls['phone1'].touched">Wrong format</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Alt Phone</label>
+        <input formControlName="phone2" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['phone2'].invalid && facilityForm.controls['phone2'].touched">Wrong format</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Fax #</label>
+        <input formControlName="fax" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['fax'].invalid && facilityForm.controls['fax'].touched">Wrong format</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <label for="">Website Link</label>
+        <input formControlName="web_url" type="text" matInput/>
+        <mat-error *ngIf="facilityForm.controls['web_url'].invalid && facilityForm.controls['web_url'].touched">Wrong format</mat-error>
+      </mat-form-field>
+      <hr>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!facilityForm.valid || loading">Create</button>
+    </form>
+  </mat-card>
+</div>

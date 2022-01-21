@@ -2,6 +2,7 @@
     <div fxFlex >
       <button mat-button routerLink="/" routerLinkActive="active">Home</button>
       <button mat-button routerLink="/dashboard" routerLinkActive="active" *ngIf="authd">Dashboard</button>
+      <button mat-button routerLink="/facility" routerLinkActive="active" *ngIf="authd">Facility</button>
       <button mat-button routerLink="/about" routerLinkActive="active">About</button>
       <button mat-button routerLink="/contact" routerLinkActive="active">Contact</button>
     </div>

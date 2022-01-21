@@ -8,14 +8,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserService } from './user.service';
-import { TokenInterceptor } from './token.interceptor';
+import { UserService } from './services/user/user.service';
+import { TokenInterceptor } from './interceptor/token/token.interceptor';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -23,9 +27,11 @@ import { ContactComponent } from './components/contact/contact.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { FacilityComponent } from './components/facility/facility.component';
+import { AddFacilityComponent } from './components/facility/add-facility/add-facility.component';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent},
@@ -35,6 +41,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'facility', component: FacilityComponent },
+  { path: 'facility/create', component: AddFacilityComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -45,7 +53,9 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    LogoutComponent
+    LogoutComponent,
+    FacilityComponent,
+    AddFacilityComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -60,6 +70,10 @@ const routes: Routes = [
     MatInputModule,
     MatCardModule,
     HttpClientModule,
+    MatTableModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatIconModule
   ],
   exports: [RouterModule],
   providers: [

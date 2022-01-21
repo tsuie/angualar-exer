@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { UserService } from 'src/app/user.service';
+import { UserService } from '../../services/user/user.service';
 import { DOCUMENT } from '@angular/common';
 
 

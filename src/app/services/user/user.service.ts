@@ -1,10 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { IUser } from './user.interface';
+import { IUser } from '../../models/user.interface';
 import { Observable , throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { environment } from './../environments/environment';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
