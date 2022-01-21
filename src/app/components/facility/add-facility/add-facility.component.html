@@ -1,4 +1,4 @@
-<h1>Create Facility</h1>
+<h1>{{ prop? 'Update' : 'Create' }} Facility</h1>
 <div fxLayoutAlign="center center" fxFlexFill>
   <mat-card fxFlex="100">
     <form
@@ -10,8 +10,9 @@
       <h1 *ngIf="loading">Loading...</h1>
       <mat-error *ngIf="!facilityForm.valid">Please fillup all required fields</mat-error>
       <mat-form-field appearance="outline">
+
         <label for="" class="py-3">Facility Number <span class="text-red-500">*</span></label>
-        <input formControlName="facility_number" type="text" matInput/>
+        <input formControlName="facility_number" type="text" matInput=/>
         <mat-error *ngIf="facilityForm.controls['facility_number'].invalid && facilityForm.controls['facility_number'].touched">Enter valid Facility #</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -59,8 +60,16 @@
         <input formControlName="web_url" type="text" matInput/>
         <mat-error *ngIf="facilityForm.controls['web_url'].invalid && facilityForm.controls['web_url'].touched">Wrong format</mat-error>
       </mat-form-field>
+
       <hr>
-      <button type="submit" mat-raised-button color="primary" [disabled]="!facilityForm.valid || loading">Create</button>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!facilityForm.valid || loading">
+        {{prop?.facility_number? 'UPDATE' : 'CREATE' }}
+    </button>
     </form>
   </mat-card>
 </div>

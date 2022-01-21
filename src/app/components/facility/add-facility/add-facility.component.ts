@@ -12,6 +12,7 @@ import { IFacility } from 'src/app/models/facility.interface';
 })
 export class AddFacilityComponent implements OnInit {
   facilityForm = this.fb.group({
+    id             :  [''],
     facility_number:  ['', [Validators.required]],
     facility:         ['', [Validators.required]],
     address1:         ['', [Validators.required, Validators.minLength(5)]],
@@ -33,7 +34,22 @@ export class AddFacilityComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('Add Facility Dialog ', this.prop)
+    console.log('Add Facility Dialog ', this.prop);
+    if(this.prop?.facility_number) {
+      this.facilityForm.setValue({
+        id: this.prop?.id || null,
+        facility_number: (this.prop?.facility_number || ''),
+        facility: (this.prop?.facility || ''),
+        address1: (this.prop?.address1 || ''),
+        address2: (this.prop?.address2 || ''),
+        city: (this.prop?.city || ''),
+        state: (this.prop?.state || ''),
+        phone1: (this.prop?.phone1 || ''),
+        phone2: (this.prop?.phone2 || ''),
+        fax: (this.prop?.fax || ''),
+        web_url: (this.prop?.web_url || ''),
+      })
+    }
   }
 
   onNoClick() {
@@ -45,28 +61,37 @@ export class AddFacilityComponent implements OnInit {
     this.loading = true;
     console.log('Submit Triggered: ', this.facilityForm);
     if(this.facilityForm.status === 'VALID') {
-      this.saveData(this.facilityForm.value).subscribe(res => {
-        console.log(res);
-        // Success
-        if(this.prop?.id) {
-          alert('Facility Created Successfully');
-        }
-        else
-          alert('Facility Created Successfully');
-        this.document.location.href = '/facility';
-      }, err => {
-        console.log(err)
-      })
-    }
-    // this.saveData(this.facilityForm.value).subscribe(res => {
-    //   console.log(res);
-    // }, err => {
-    //   console.log(err)
-    // })
-    // this.dialogRef.close();
-  }
+      if(this.prop.facility_number) {
+        // Update Data
+        console.log('From Data', this.prop);
+        console.log('To Data', this.facilityForm.value);
 
-  saveData(data: IFacility) {
+        this.updateData(this.facilityForm.value).subscribe(res => {
+          console.log(res);
+          alert('Facility Updated Successfully');
+          this.document.location.href = '/facility';
+        });
+      }
+      else {
+        // Create Data
+        this.createData(this.facilityForm.value).subscribe(res => {
+          console.log(res);
+          // Success
+          alert('Facility Created Successfully');
+
+          this.document.location.href = '/facility';
+        }, err => {
+          console.log(err)
+        })
+      }
+
+    }
+
+  }
+  updateData(data: IFacility) {
+    return this._facilityService.update(data);
+  }
+  createData(data: IFacility) {
     return this._facilityService.create(data)
   }
 

@@ -55,14 +55,14 @@ export class FacilityService {
     );
   }
 
-  update(data: object): Observable<IFacility[]>  {
-    return this.http.post<IFacility[]>(this._url + "facilities", data, this._httpOptions).pipe(
+  update(data: IFacility): Observable<IFacility[]>  {
+    return this.http.put<any>(this._url + "facilities/" + data?.id, data, this._httpOptions).pipe(
       catchError(this.errorHandler)
     );
   }
 
-  delete(data: object): Observable<IFacility[]>  {
-    return this.http.post<IFacility[]>(this._url + "facilities", data, this._httpOptions).pipe(
+  delete(id: number): Observable<IFacility[]>  {
+    return this.http.delete<IFacility[]>(this._url + "facilities/" + id, this._httpOptions).pipe(
       catchError(this.errorHandler)
     );
   }
