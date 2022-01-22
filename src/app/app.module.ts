@@ -20,6 +20,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -75,7 +78,10 @@ const routes: Routes = [
     MatTableModule,
     MatGridListModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatDividerModule
   ],
   exports: [RouterModule],
   providers: [

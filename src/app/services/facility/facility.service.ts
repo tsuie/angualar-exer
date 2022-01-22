@@ -49,8 +49,8 @@ export class FacilityService {
     );
   }
 
-  read(): Observable<any>  {
-    return this.http.get<any>(this._url + "facilities", this._httpOptions).pipe(
+  read(page: number): Observable<any>  {
+    return this.http.get<any>(this._url + "facilities?page=" + page, this._httpOptions).pipe(
       catchError(this.errorHandler)
     );
   }

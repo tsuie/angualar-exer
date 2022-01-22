@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FacilityService } from '../../services/facility/facility.service';
 import { AddFacilityComponent } from './add-facility/add-facility.component';
 import { DeleteFacilityComponent } from './delete-facility/delete-facility.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IFacility } from 'src/app/models/facility.interface';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-facility',
@@ -14,7 +15,7 @@ import { IFacility } from 'src/app/models/facility.interface';
 
 
 export class FacilityComponent implements OnInit {
-  ELEMENT_DATA: any[] = [];
+  ELEMENT_DATA: IFacility[] = [];
   displayedColumns: string[] = [
     'facility_number',
     'facility',
@@ -26,18 +27,21 @@ export class FacilityComponent implements OnInit {
   ];
   dataSource = this.ELEMENT_DATA;
   facilities: object = [];
+  isLoading = false;
+  totalRows = 0;
+  pageSize = 10;
+  currentPage = 0;
+  // pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
   constructor(
     private fb: FormBuilder,
     private _facilityService: FacilityService,
     public dialog: MatDialog
   ) {
-    this._facilityService.read().subscribe(res => {
-      this.facilities = res;
-      this.dataSource = res.data;
-    }, error => {
-      console.log(error);
-    })
-    console.log('');
+
   }
 
   openAddFacility(): void {
@@ -74,5 +78,31 @@ export class FacilityComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.facilities);
+    this.loadData();
+  }
+
+  loadData() {
+    this.isLoading = true;
+
+    this._facilityService.read((this.currentPage + 1) ).subscribe(res => {
+      this.facilities = res;
+      this.dataSource = res.data;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = res.meta?.total;
+      });
+      this.isLoading = false;
+    }, error => {
+      console.log(error);
+      this.isLoading = false;
+    })
+    console.log('');
+  }
+
+  pageChanged(event: PageEvent) {
+    console.log({ event });
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.loadData();
   }
 }

@@ -1,7 +1,8 @@
 
 <h1>Facilities | <button mat-stroked-button color="accent" (click)="openAddFacility()"><mat-icon>create_new_folder</mat-icon> Create</button></h1>
 <p>Click on the item to view more details</p>
-<div fxLayoutAlign="left center" fxFlexFill>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<div fxLayoutAlign="left center" fxFlexFill class="mb-30">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlex="100">
     <!-- facility_number Column -->
     <ng-container matColumnDef="facility_number">
@@ -75,9 +76,15 @@
         ><mat-icon>delete</mat-icon></button>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+</div>
+<div fxLayoutAlign="left center" fxFlexFill >
+  <!--  [pageSizeOptions]="pageSizeOptions"  -->
+  <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
 
+    (page)="pageChanged($event)"
+    aria-label="Select page">
+  </mat-paginator>
 </div>

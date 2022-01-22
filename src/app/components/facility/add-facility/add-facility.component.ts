@@ -61,7 +61,7 @@ export class AddFacilityComponent implements OnInit {
     this.loading = true;
     console.log('Submit Triggered: ', this.facilityForm);
     if(this.facilityForm.status === 'VALID') {
-      if(this.prop.facility_number) {
+      if(this.prop?.facility_number) {
         // Update Data
         console.log('From Data', this.prop);
         console.log('To Data', this.facilityForm.value);
